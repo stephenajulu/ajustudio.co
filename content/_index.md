@@ -5,110 +5,66 @@ sections:
   - type: hero_section
     section_id: hero
     title: >-
-      This is an Award Winning Agency Based in San Francisco and Focusing on
-      Digital, Identity, and Print Design.
-    content: >-
-      We are a brand and design practice. We work closely with you, your team to
-      deliver inspiring work, which enables your organization to grow. [Let's
-      talk](/contact/).
+      We are a bespoke branding and design studio located in Nairobi.
   - type: portfolio_section
     section_id: latest-projects
-    layout_style: tiles
-    title: Recent Work
-    subtitle: Explore case studies
+    layout_style: mosaic
     projects_number: 6
-    view_all_label: View All
+    view_all_label: Want more? →
     view_all_url: portfolio
-  - type: grid_section
-    section_id: clients
-    title: Clients
-    subtitle: A few of the companies we're proud to call partners
-    col_number: three
-    grid_items:
-      - image: images/logo-1.svg
-        image_alt: Logo 1
-      - image: images/logo-2.svg
-        image_alt: Logo 2
-      - image: images/logo-3.svg
-        image_alt: Logo 3
-      - image: images/logo-4.svg
-        image_alt: Logo 4
-      - image: images/logo-5.svg
-        image_alt: Logo 5
   - type: grid_section
     section_id: services
     title: Services
-    subtitle: What we do
     col_number: three
     grid_items:
-      - title: Business design
-        image: images/service-1.svg
-        content: |-
-          - Research and insight
-          - Business innovation and transformation
-          - Brand and strategy
-          - Brand portfolio strategy
-          - Design strategy
-          - Digital and experience strategy
-          - Communication strategy
-      - title: Brand design
-        image: images/service-2.svg
-        content: |-
-          - Brand development
-          - Naming
-          - Brand identity
-          - Design systems
-          - Concept development
-          - Brand implementation and management
-          - Typography
-      - title: Experience design
+      - title: Brand Identity
+        subtitle: Credibility takes years. We design it in a less than a fortnight.
         image: images/service-3.svg
-        content: |-
-          - Digital product design
-          - Service design
-          - Environmental and retail design
-          - Packaging design
-          - Art direction
-          - Communication design
-          - Social media
-          - Product design
+        content: >-
+          Your brand should define categories, speak to your customers and be the envy of your competitors.
+      - title: Website Design & Development
+        subtitle: Your website should do more than look good and load fast.
+        image: images/service-3.svg
+        content: >-
+          Build credibility, earn clicks, and drive conversion. Awards? Just a bonus
+      - title: Brand & Digital Prescence
+        subtitle: From first impression to first enquiry.
+        image: images/service-3.svg
+        content: >-
+          We design distinctive brands and conversion-focused websites that help ambitious businesses look established, earn trust, and grow faster.
   - type: cta_section
     section_id: cta
-    title: Let’s Work Together!
+    title: A brand is only as good as the emotion it evokes
     content: >-
-      Say hello at [email@example.com](mailto:email@example.com) or tell us more
-      about your project by getting started below.
+       Interested in working with us? Whether you’re a new brand looking to build a visual identity from the ground up, or a seasoned brand looking for a complete visual re-fresh, we’re here to help.
     actions:
-      - label: Let's start
+      - label: Let's start a project →
         url: /contact
         style: button
     image: images/cta.svg
     image_alt: Illustration
     bg_color: light
 seo:
-  title: Award Winning Agency Based in San Francisco
+  title: AJU studio | Bespoke Branding and Design
   description: >-
-    We are a brand and design practice. We work closely with you, your team to
-    deliver inspiring work, which enables your organization to grow.
+    AJU is a bespoke branding and design studio located in Nairobi. Our focus? The evolution of branding and design in the pursuit of impact and excellence.
   extra:
     - name: 'og:type'
       value: website
       keyName: property
     - name: 'og:title'
-      value: Award Winning Agency Based in San Francisco
+      value: AJU studio | Bespoke Branding and Design
       keyName: property
     - name: 'og:description'
       value: >-
-        We are a brand and design practice. We work closely with you, your team
-        to deliver inspiring work, which enables your organization to grow.
+        AJU is a bespoke branding and design studio located in Nairobi. Our focus? The evolution of branding and design in the pursuit of impact and excellence.
       keyName: property
     - name: 'twitter:card'
       value: summary
     - name: 'twitter:title'
-      value: Award Winning Agency Based in San Francisco
+      value: AJU studio | Bespoke Branding and Design
     - name: 'twitter:description'
       value: >-
-        We are a brand and design practice. We work closely with you, your team
-        to deliver inspiring work, which enables your organization to grow.
+        AJU is a bespoke branding and design studio located in Nairobi. Our focus? The evolution of branding and design in the pursuit of impact and excellence.
 layout: advanced
 ---

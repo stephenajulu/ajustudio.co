@@ -1,0 +1,128 @@
+{{/* SEO & Social Metadata Partial */}}
+{{- $siteTitle := hugo.Data.config.title | default .Site.Title -}}
+{{- $title := "" -}}
+{{- if .IsHome -}}
+  {{- $title = .Params.seo.title | default $siteTitle -}}
+{{- else if .Params.seo.title -}}
+  {{- $title = .Params.seo.title -}}
+{{- else if .Title -}}
+  {{- $title = printf "%s | %s" .Title $siteTitle -}}
+{{- else -}}
+  {{- $title = $siteTitle -}}
+{{- end -}}
+
+{{- $defaultDesc := "AJU is a bespoke branding and design studio located in Nairobi. We design distinctive brands, visual identities, and conversion-focused websites that inspire and drive growth." -}}
+{{- $description := .Params.seo.description | default .Params.subtitle | default .Summary | default $defaultDesc | plainify | chomp -}}
+
+{{- $ogImage := "" -}}
+{{- if .Params.image -}}
+  {{- $ogImage = .Params.image | absURL -}}
+{{- else if .Params.thumb_image -}}
+  {{- $ogImage = .Params.thumb_image | absURL -}}
+{{- else -}}
+  {{- $ogImage = "images/work-book-1.jpg" | absURL -}}
+{{- end -}}
+
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $description }}">
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{/* Robots */}}
+{{- if .Params.seo.robots }}
+<meta name="robots" content="{{ delimit .Params.seo.robots "," }}">
+{{- else }}
+<meta name="robots" content="index, follow">
+{{- end }}
+
+{{/* Open Graph */}}
+<meta property="og:site_name" content="{{ $siteTitle }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:image" content="{{ $ogImage }}">
+<meta property="og:locale" content="en_US">
+
+{{/* Twitter Card */}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ $ogImage }}">
+
+{{/* Frontmatter SEO Extras */}}
+{{- range $meta := .Params.seo.extra }}
+  {{- $keyName := $meta.keyName | default "name" }}
+  {{- if $meta.relativeUrl }}
+    {{- $val := $meta.value | absURL }}
+    <meta {{ $keyName }}="{{ $meta.name }}" content="{{ $val }}">
+  {{- else }}
+    <meta {{ $keyName }}="{{ $meta.name }}" content="{{ $meta.value }}">
+  {{- end }}
+{{- end }}
+
+{{/* JSON-LD Structured Data */}}
+{{- if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "AJU studio",
+  "url": "{{ .Site.BaseURL }}",
+  "logo": "{{ "images/aju_logo.svg" | absURL }}",
+  "image": "{{ $ogImage }}",
+  "description": "{{ $description }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Nairobi",
+    "addressCountry": "KE"
+  },
+  "sameAs": [
+    "https://www.instagram.com/ajustudio",
+    "https://dribbble.com/ajustudio"
+  ]
+}
+</script>
+{{- else if and .IsPage (eq .Section "blog") }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ .Title }}",
+  "description": "{{ $description }}",
+  "image": "{{ $ogImage }}",
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "mainEntityOfPage": "{{ .Permalink }}",
+  "author": {
+    "@type": "Organization",
+    "name": "AJU studio",
+    "url": "{{ .Site.BaseURL }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AJU studio",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ "images/aju_logo.svg" | absURL }}"
+    }
+  }
+}
+</script>
+{{- else if and .IsPage (eq .Section "portfolio") }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "{{ .Title }}",
+  "headline": "{{ .Title }}",
+  "description": "{{ $description }}",
+  "image": "{{ $ogImage }}",
+  "dateCreated": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "author": {
+    "@type": "Organization",
+    "name": "AJU studio",
+    "url": "{{ .Site.BaseURL }}"
+  }
+}
+</script>
+{{- end }}

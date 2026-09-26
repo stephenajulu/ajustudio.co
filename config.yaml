@@ -1,11 +1,12 @@
-title: Stackbit Agency Theme
-baseURL: /
+title: AJU studio | Bespoke Branding and Design
+baseURL: https://ajustudio.co/
+languageCode: en
 taxonomies:
   stub: stub
 disableKinds:
   - RSS
   - taxonomy
-  - taxonomyTerm
+  - term
 markup:
   goldmark:
     renderer:

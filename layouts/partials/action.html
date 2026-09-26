@@ -3,7 +3,7 @@
 {{ $action_icon := $action.icon | default "dribbble" }}
 <a href="{{ $action.url | relURL }}"
   {{ if $action.new_window }} target="_blank"{{ end }}
-  {{ if or $action.new_window $action.no_follow }} rel="{{ if $action.new_window }}noopener {{ end }}{{ if $action.no_follow }}nofollow{{ end }}"{{ end }}
+  {{ if or $action.new_window $action.no_follow }} rel="{{ if $action.new_window }}noopener noreferrer {{ end }}{{ if $action.no_follow }}nofollow{{ end }}"{{ end }}
   class="{{ if ne $action_style "link" }}button{{ end }}{{ if eq $action_style "button" }} button--primary{{ end }}{{ if eq $action_style "icon" }} button--icon{{ end }}">
   {{ if eq $action_style "icon" }}
     {{ $include_dict := dict "icon" $action_icon }}

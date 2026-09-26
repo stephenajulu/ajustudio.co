@@ -1,45 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ .Site.LanguageCode | default "en" }}">
     <head>    
-
-        <title>{{ if .Params.seo.title }}{{ $.Params.seo.title }}{{ else }}{{ print print $.Title " | " $.Site.Data.config.title }}{{ end }}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="google" content="notranslate" />
-        <meta name="description" content="{{ .Params.seo.description | default "" }}" />
-        {{ if .Params.seo.robots }}
-        <meta name="robots" content="{{ delimit $.Params.seo.robots "," }}">
-        {{ end }}
-        {{ range $meta := .Params.seo.extra }}
-          {{ $key_name := $meta.keyName | default "name" }}
-          {{ if $meta.relativeUrl }}
-            {{ if $.Site.Data.config.domain }}
-              {{ $domain := trim $.Site.Data.config.domain "/" }}
-              {{ $rel_url := $meta.value | relURL }}
-              {{ $full_url := print $domain $rel_url }}
-              <meta {{ $key_name }}="{{ $meta.name }}" content="{{ $full_url }}">
-            {{ end }}
-          {{ else }}
-            <meta {{ $key_name }}="{{ $meta.name }}" content="{{ $meta.value }}">
-          {{ end }}
-        {{ end }}
-        {{ $font := .Site.Data.config.base_font | default "fraunces" }}
+        {{ partial "seo.html" . }}
+        {{ $font := hugo.Data.config.base_font | default "fraunces" }}
         {{ if ne $font "system-sans" }}
-        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         {{ end }}
         {{ if eq $font "fraunces" }}
         <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
         {{ else if eq $font "karla" }}
         <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
         {{ end }}
-        <link rel="stylesheet" href="{{ (resources.Get "sass/main.scss" | resources.ToCSS (dict "indentWidth" 4 "outputStyle" "nested" "precision" 10 "targetPath" "css/main.css")).Permalink }}">
-        {{ if .Site.Data.config.favicon }}
-        <link rel="icon" href="{{ $.Site.Data.config.favicon | relURL }}">
+        {{ $sassOpts := dict "outputStyle" "compressed" "targetPath" "css/main.css" }}
+        {{ $css := resources.Get "sass/main.scss" | css.Sass $sassOpts | resources.Minify | resources.Fingerprint }}
+        <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+        {{ if hugo.Data.config.favicon }}
+        <link rel="icon" href="{{ hugo.Data.config.favicon | relURL }}">
         {{ end }}
-        
     </head>
-    <body class="font-{{ .Site.Data.config.base_font }} palette-{{ .Site.Data.config.color_scheme }} accent-{{ .Site.Data.config.accent_color }}">
-        
+    <body class="font-{{ hugo.Data.config.base_font }} palette-{{ hugo.Data.config.color_scheme }} accent-{{ hugo.Data.config.accent_color }}">
+        <a class="screen-reader-text" href="#content">Skip to main content</a>
         <div id="site-wrap" class="site">
           {{ partial "header.html" . }}
           <main id="content" class="site-content">

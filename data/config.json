@@ -1,21 +1,16 @@
 {
-    "title": "Stackbit Agency Theme",
+    "title": "AJU studio | Bespoke Branding and Design",
     "color_scheme": "light",
-    "accent_color": "green",
+    "accent_color": "red",
     "base_font": "fraunces",
     "header": {
-        "title": "Agency",
-        "logo": "images/logo.svg",
-        "logo_alt": "Agency logo",
+        "title": "AJU",
+        "logo": "images/aju_logo.svg",
+        "logo_alt": "AJU studio logo",
         "has_nav": true,
         "nav_links": [
             {
-                "label": "Home",
-                "url": "/",
-                "style": "link"
-            },
-            {
-                "label": "Work",
+                "label": "Portfolio",
                 "url": "/portfolio/",
                 "style": "link"
             },
@@ -25,47 +20,28 @@
                 "style": "link"
             },
             {
-                "label": "About",
-                "url": "/about/",
-                "style": "link"
-            },
-            {
-                "label": "Contact",
+                "label": "Inquire →",
                 "url": "/contact/",
                 "style": "button"
             }
         ]
     },
     "footer": {
-        "content": "&copy; Stackbit. All rights reserved. This Jamstack site was created with <a href=\"https://www.stackbit.com/?utm_source=deployed-footer\" target=\"_blank\" rel=\"noopener\">Stackbit</a>. Create yours <a href=\"https://app.stackbit.com/create?theme=agency&utm_source=deployed-footer\" target=\"_blank\" rel=\"noopener\">now</a>",
+        "content": "&copy; AJU studio. All rights reserved.",
         "has_social": true,
         "social_links": [
             {
-                "label": "Twitter",
-                "url": "https://twitter.com/",
-                "style": "icon",
-                "icon": "twitter",
-                "new_window": true
-            },
-            {
                 "label": "Instagram",
-                "url": "https://www.instagram.com/",
+                "url": "https://www.instagram.com/ajustudio",
                 "style": "icon",
                 "icon": "instagram",
                 "new_window": true
             },
             {
                 "label": "Dribbble",
-                "url": "https://dribbble.com/",
+                "url": "https://dribbble.com/ajustudio",
                 "style": "icon",
                 "icon": "dribbble",
-                "new_window": true
-            },
-            {
-                "label": "LinkedIn",
-                "url": "https://www.linkedin.com/",
-                "style": "icon",
-                "icon": "linkedin",
                 "new_window": true
             }
         ]
