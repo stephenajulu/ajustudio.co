@@ -3,17 +3,17 @@
 <article class="project">
   <header class="project__header">
     <div class="container container--md">
-      <h1 class="project__title line-top">{{ .Params.title }}</h1>
+      <h1 class="project__title line-top" data-cms-bind="title">{{ .Params.title }}</h1>
       {{ if .Params.subtitle }}
-      <div class="project__subtitle">
+      <div class="project__subtitle" data-cms-bind="subtitle">
         {{ $.Params.subtitle }}
       </div>
       {{ end }}
     </div>
   </header>
   <div class="project__body">
-      {{ range $section := .Params.sections }}
-        {{ $include_dict := dict "section" $section "Site" $.Site }}
+      {{ range $index, $section := .Params.sections }}
+        {{ $include_dict := dict "section" $section "Site" $.Site "index" $index }}
         {{ $component := print $section.type ".html" }}
         {{ partial $component $include_dict }}
       {{ end }}

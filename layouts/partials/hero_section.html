@@ -1,16 +1,16 @@
 {{ $section := .section }}
-<section id="{{ $section.section_id }}" class="hero">
+<section id="{{ $section.section_id }}" class="hero"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}"{{ end }}>
   <div class="container container--lg">
     {{ if $section.title }}
-    <h1 class="hero__title">{{ $section.title }}</h1>
+    <h1 class="hero__title"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}.title"{{ end }}>{{ $section.title }}</h1>
     {{ end }}
     {{ if $section.content }}
-    <div class="hero__body text-block">
+    <div class="hero__body text-block"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}.content"{{ end }}>
       {{ partial "markdownify-block" $section.content }}
     </div>
     {{ end }}
     {{ if $section.actions }}
-    <div class="hero__actions button-group">
+    <div class="hero__actions button-group"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}.actions"{{ end }}>
       {{ $include_dict := dict "actions" $section.actions }}
       {{ partial "cta_buttons.html" $include_dict }}
     </div>

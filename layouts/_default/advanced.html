@@ -3,16 +3,16 @@
 {{ if not .Params.hide_title }}
 <header class="section section--header">
   <div class="container container--lg">
-    <h1 class="section__title line-top">{{ $.Params.title }}</h1>
+    <h1 class="section__title line-top" data-cms-bind="title">{{ $.Params.title }}</h1>
     {{ if $.Params.subtitle }}
-    <p class="section__subtitle">{{ $.Params.subtitle }}</p>
+    <p class="section__subtitle" data-cms-bind="subtitle">{{ $.Params.subtitle }}</p>
     {{ end }}
   </div>
 </header>
 {{ end }}
 
-{{ range $section := .Params.sections }}
-  {{ $include_dict := dict "section" $section "Site" $.Site }}
+{{ range $index, $section := .Params.sections }}
+  {{ $include_dict := dict "section" $section "Site" $.Site "index" $index }}
   {{ $component := print $section.type ".html" }}
   {{ partial $component $include_dict }}
 {{ end }}

@@ -1,25 +1,25 @@
 {{ $section := .section }}
 {{ $bg_color := $section.bg_color | default "none" }}
-<section id="{{ $section.section_id }}" class="section section--cta">
+<section id="{{ $section.section_id }}" class="section section--cta"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}"{{ end }}>
   <div class="container container--lg">
     <div {{ if ne $bg_color "none" }}class="section__bg"{{ end }}>
       <div {{ if $section.image }}class="grid"{{ end }}>
         {{ if $section.image }}
         <div class="section__image cell">
-          <img src="{{ $section.image | relURL }}" alt="{{ $section.image_alt }}" />
+          <img src="{{ $section.image | relURL }}" alt="{{ $section.image_alt }}"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}.image"{{ end }} />
         </div>
         {{ end }}
         <div class="section__content{{ if $section.image }} cell{{ end }}">
           {{ if $section.title }}
-          <h2 class="section__title">{{ $section.title }}</h2>
+          <h2 class="section__title"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}.title"{{ end }}>{{ $section.title }}</h2>
           {{ end }}
           {{ if $section.content }}
-          <div class="section__body text-block">
+          <div class="section__body text-block"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}.content"{{ end }}>
             {{ partial "markdownify-block" $section.content }}
           </div>
           {{ end }}
           {{ if $section.actions }}
-          <div class="section__actions button-group">
+          <div class="section__actions button-group"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}.actions"{{ end }}>
             {{ $include_dict := dict "actions" $section.actions }}
             {{ partial "cta_buttons.html" $include_dict }}
           </div>

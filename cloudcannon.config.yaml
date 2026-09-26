@@ -1,0 +1,529 @@
+# CloudCannon Configuration
+# Documentation: https://cloudcannon.com/documentation/articles/the-cloudcannon-configuration-file/
+
+paths:
+  uploads: static/images
+  dam_uploads: static/images
+  static: static
+
+# Source and site configuration
+source: ""
+timezone: Africa/Nairobi
+
+# Generator specification
+generator:
+  name: hugo
+  options:
+    extended: true
+
+# Content Collections
+collections_config:
+  pages:
+    path: content
+    glob: "*.md"
+    name: Pages
+    icon: description
+    output: true
+    url: "/[slug]/"
+    filter:
+      strict: true
+      exclude:
+        - _index.md
+    _enabled_editors:
+      - visual
+      - content
+    schemas:
+      default:
+        path: .cloudcannon/schemas/page.md
+        name: Standard Page
+        icon: article
+      advanced:
+        path: .cloudcannon/schemas/advanced.md
+        name: Modular Page
+        icon: dashboard_customize
+    add_options:
+      - name: Add Standard Page
+        schema: default
+      - name: Add Modular Page
+        schema: advanced
+
+  homepage:
+    path: content/_index.md
+    name: Homepage
+    icon: home
+    output: true
+    url: "/"
+    _enabled_editors:
+      - visual
+      - content
+
+  portfolio:
+    path: content/portfolio
+    name: Portfolio
+    icon: work
+    output: true
+    url: "/portfolio/[slug]/"
+    filter:
+      exclude:
+        - _index.md
+    schemas:
+      default:
+        path: .cloudcannon/schemas/project.md
+        name: Portfolio Project
+        icon: design_services
+    _enabled_editors:
+      - visual
+      - content
+    add_options:
+      - name: Add New Project
+        schema: default
+
+  blog:
+    path: content/blog
+    name: Journal
+    icon: edit_note
+    output: true
+    url: "/blog/[slug]/"
+    filter:
+      exclude:
+        - _index.md
+    schemas:
+      default:
+        path: .cloudcannon/schemas/post.md
+        name: Journal Post
+        icon: post_add
+    _enabled_editors:
+      - visual
+      - content
+    add_options:
+      - name: Add New Article
+        schema: default
+
+  data:
+    path: data
+    name: Site Settings
+    icon: tune
+    _enabled_editors:
+      - data
+
+# Component / Block Structures for Visual Page Builder
+_structures:
+  sections:
+    style: select
+    values:
+      - value:
+          type: hero_section
+          section_id: hero
+          title: "We are a bespoke branding and design studio located in Nairobi."
+          content: ""
+          actions: []
+        label: Hero Section
+        icon: title
+        description: Large prominent header banner with headline and calls to action
+
+      - value:
+          type: portfolio_section
+          section_id: latest-projects
+          title: "Selected Work"
+          subtitle: "A showcase of recent identities and digital systems"
+          layout_style: mosaic
+          projects_number: 6
+          view_all_label: "View all work →"
+          view_all_url: "/portfolio/"
+        label: Portfolio Showcase
+        icon: grid_view
+        description: Showcase feed pulling in recent portfolio case studies
+
+      - value:
+          type: grid_section
+          section_id: services
+          title: "Services"
+          subtitle: "What we do best"
+          col_number: three
+          grid_items:
+            - title: "Brand Identity"
+              subtitle: "Distinctive visual systems"
+              image: "images/service-3.svg"
+              content: "Defining categories with strategic design."
+            - title: "Website Design & Development"
+              subtitle: "Digital experiences"
+              image: "images/service-3.svg"
+              content: "Conversion-focused websites built for performance."
+            - title: "Brand & Digital Presence"
+              subtitle: "End-to-end impact"
+              image: "images/service-3.svg"
+              content: "Helping ambitious businesses look established and grow."
+        label: Grid / Services Cards
+        icon: view_column
+        description: 2, 3, or 4 column grid of feature cards with icons and descriptions
+
+      - value:
+          type: cta_section
+          section_id: cta
+          title: "A brand is only as good as the emotion it evokes"
+          content: "Interested in working with us? Let's discuss your next project."
+          image: "images/cta.svg"
+          image_alt: "Illustration"
+          bg_color: light
+          actions:
+            - label: "Let's start a project →"
+              url: "/contact"
+              style: button
+        label: Call to Action (CTA)
+        icon: call_to_action
+        description: High-impact conversion block with background accent and buttons
+
+      - value:
+          type: content_section
+          section_id: story
+          title: "Our Story"
+          subtitle: ""
+          content: "Bespoke design studio based in Nairobi."
+          image: "images/about.jpg"
+          image_alt: "AJU Studio Team"
+        label: Content Section (Image & Text)
+        icon: auto_stories
+        description: Side-by-side editorial section with an image and narrative text
+
+      - value:
+          type: form_section
+          section_id: contact-form
+          title: "Let's build something great together."
+          subtitle: "Complete our form or email us."
+          content: ""
+          form_id: contactForm
+          form_action: /thank-you
+          submit_label: "Send Message"
+          form_fields:
+            - name: name
+              label: Name
+              input_type: text
+              default_value: "Your name"
+              is_required: true
+            - name: email
+              label: Email
+              input_type: email
+              default_value: "Your email address"
+              is_required: true
+            - name: subject
+              label: "What services are you looking for?"
+              input_type: select
+              default_value: "Please select"
+              options:
+                - "Brand Identity"
+                - "Website Design & Development"
+                - "Brand & Digital Presence"
+            - name: message
+              label: Message
+              input_type: textarea
+              default_value: "Tell us about your project..."
+              is_required: false
+        label: Contact Form Section
+        icon: contact_mail
+        description: Embeddable Netlify form with customizable inputs
+
+      - value:
+          type: testimonials_section
+          section_id: testimonials
+          title: "Client Words"
+          subtitle: "What our partners say about collaborating with us"
+          testimonials:
+            - author: "Client Name"
+              position: "Founder & CEO"
+              content: "Working with AJU studio transformed how our brand is perceived in the market."
+              avatar: "images/team-1.png"
+              avatar_alt: "Client portrait"
+        label: Testimonials Section
+        icon: format_quote
+        description: Quotes and client reviews with author portraits
+
+      - value:
+          type: posts_section
+          section_id: journal
+          title: "Latest Thoughts"
+          subtitle: "Insights on design, typography, and digital strategy"
+          col_number: three
+          posts_number: 3
+          actions:
+            - label: "Read all articles →"
+              url: "/blog/"
+              style: link
+        label: Journal Posts Feed
+        icon: feed
+        description: Dynamic feed pulling the most recent journal entries
+
+  project_sections:
+    style: select
+    values:
+      - value:
+          type: image_section
+          image: "images/work-poster-1.jpg"
+          image_alt: "Project image preview"
+          caption: "Case study photography"
+          width: wide
+        label: Project Image Block
+        icon: image
+      - value:
+          type: text_section
+          content: "Detailed case study narrative describing the strategic challenge, concept, and design outcome."
+        label: Narrative Text Block
+        icon: text_fields
+
+  grid_items:
+    style: select
+    values:
+      - value:
+          title: "Service Title"
+          subtitle: "Short description"
+          image: "images/service-1.svg"
+          image_alt: "Icon"
+          content: "Detailed description of the service offering."
+          actions: []
+        label: Grid Item
+
+  form_fields:
+    style: select
+    values:
+      - value:
+          name: "field_name"
+          label: "Field Label"
+          input_type: text
+          default_value: ""
+          is_required: false
+        label: Form Field
+
+  testimonials:
+    style: select
+    values:
+      - value:
+          author: "Jane Doe"
+          position: "Managing Director"
+          content: "The brand identity provided by AJU exceeded our expectations."
+          avatar: "images/team-1.png"
+          avatar_alt: "Portrait"
+        label: Testimonial
+
+  actions:
+    style: select
+    values:
+      - value:
+          label: "Learn More →"
+          url: "/about/"
+          style: link
+          new_window: false
+          no_follow: false
+        label: Action Link / Button
+
+  nav_links:
+    style: select
+    values:
+      - value:
+          label: "Page Name"
+          url: "/page/"
+          style: link
+        label: Navigation Item
+
+  social_links:
+    style: select
+    values:
+      - value:
+          label: "Instagram"
+          url: "https://www.instagram.com/ajustudio"
+          style: icon
+          icon: instagram
+          new_window: true
+        label: Social Link
+
+# Field Input Controls & Options
+_inputs:
+  color_scheme:
+    type: select
+    comment: "Base color theme for the studio site"
+    options:
+      values:
+        - light
+        - dark
+
+  accent_color:
+    type: select
+    comment: "Brand highlight color"
+    options:
+      values:
+        - red
+        - green
+        - blue
+        - violet
+        - yellow
+
+  base_font:
+    type: select
+    comment: "Primary typographic system"
+    options:
+      values:
+        - fraunces
+        - karla
+        - system-sans
+
+  layout_style:
+    type: select
+    options:
+      values:
+        - mosaic
+        - tiles
+
+  col_number:
+    type: select
+    label: Number of columns
+    options:
+      values:
+        - two
+        - three
+
+  bg_color:
+    type: select
+    label: Background styling
+    options:
+      values:
+        - none
+        - light
+
+  width:
+    type: select
+    label: Image display width
+    options:
+      values:
+        - regular
+        - wide
+
+  input_type:
+    type: select
+    label: Field Input Type
+    options:
+      values:
+        - text
+        - email
+        - tel
+        - number
+        - select
+        - textarea
+        - checkbox
+
+  style:
+    type: select
+    label: Button / Link Style
+    options:
+      values:
+        - link
+        - button
+        - icon
+
+  icon:
+    type: select
+    label: Icon Symbol
+    options:
+      values:
+        - instagram
+        - dribbble
+        - twitter
+        - linkedin
+        - facebook
+        - pinterest
+        - youtube
+        - vimeo
+        - github
+
+  image:
+    type: image
+    options:
+      paths:
+        uploads: static/images
+  thumb_image:
+    type: image
+    options:
+      paths:
+        uploads: static/images
+  avatar:
+    type: image
+    options:
+      paths:
+        uploads: static/images
+  logo:
+    type: image
+    options:
+      paths:
+        uploads: static/images
+  favicon:
+    type: image
+    options:
+      paths:
+        uploads: static/images
+
+  date:
+    type: date
+    label: Publication Date
+
+  content:
+    type: markdown
+    options:
+      bold: true
+      italic: true
+      link: true
+      bullet_list: true
+      number_list: true
+      heading: [2, 3, 4]
+      code: true
+      quote: true
+
+  sections:
+    type: array
+    options:
+      structures: _structures.sections
+
+  grid_items:
+    type: array
+    options:
+      structures: _structures.grid_items
+
+  form_fields:
+    type: array
+    options:
+      structures: _structures.form_fields
+
+  testimonials:
+    type: array
+    options:
+      structures: _structures.testimonials
+
+  actions:
+    type: array
+    options:
+      structures: _structures.actions
+
+  nav_links:
+    type: array
+    options:
+      structures: _structures.nav_links
+
+  social_links:
+    type: array
+    options:
+      structures: _structures.social_links
+
+  hide_title:
+    type: checkbox
+    label: Hide Main Header Title
+  has_nav:
+    type: checkbox
+    label: Show Navigation Bar
+  has_social:
+    type: checkbox
+    label: Show Social Links
+  new_window:
+    type: checkbox
+    label: Open in new tab (target="_blank")
+  no_follow:
+    type: checkbox
+    label: Add rel="nofollow"
+  is_required:
+    type: checkbox
+    label: Required field

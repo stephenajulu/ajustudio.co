@@ -1,16 +1,16 @@
 {{ $section := .section }}
 {{ $col_number := $section.col_number | default "three" }}
-<section id="{{ $section.section_id }}" class="section section--grid">
+<section id="{{ $section.section_id }}" class="section section--grid"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}"{{ end }}>
   <div class="container container--lg">
     {{ if $section.title }}
-    <h2 class="section__title line-top">{{ $section.title }}</h2>
+    <h2 class="section__title line-top"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}.title"{{ end }}>{{ $section.title }}</h2>
     {{ end }}
     {{ if $section.subtitle }}
-    <p class="section__subtitle">{{ $section.subtitle }}</p>
+    <p class="section__subtitle"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}.subtitle"{{ end }}>{{ $section.subtitle }}</p>
     {{ end }}
     {{ if $section.grid_items }}
-    <div class="grid grid--col-{{ $col_number }}">
-      {{ range $item := $section.grid_items }}
+    <div class="grid grid--col-{{ $col_number }}"{{ if isset . "index" }} data-cms-bind="sections.{{ .index }}.grid_items"{{ end }}>
+      {{ range $item_idx, $item := $section.grid_items }}
       <div class="cell card">
         {{ if $item.image }}
         <div class="card__image">
